@@ -24,8 +24,6 @@ jobs:
   - build
   pool:
     vmImage: ubuntu-16.04
-  container:
-    image: "$[ dockerRegistry ]/$[ imageName ]:$[ build.buildId ]"
-    # endpoint: docker-hub-registry
+  container: "$(dockerRegistry)/$(imageName):$(build.buildId)"
   steps:
   - script: printenv
