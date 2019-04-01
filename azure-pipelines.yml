@@ -20,7 +20,7 @@ jobs:
   - script: |
       docker login -u $(dockerUsername) -p $(dockerPassword)
       docker build -t '$(dockerRegistry)/$(imageName):$(build.buildId)' .
-      docker push -t '$(dockerRegistry)/$(imageName):$(build.buildId)'
+      docker push '$(dockerRegistry)/$(imageName):$(build.buildId)'
     displayName: 'docker build'
 
 - job: test
