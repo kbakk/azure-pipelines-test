@@ -24,6 +24,6 @@ jobs:
   - build
   pool:
     vmImage: ubuntu-16.04
-  container: "$(dockerRegistry)/$(imageName):$(build.buildId)"
+  container: $[ format('{0}/{1}:{2}', variables ['dockerRegistry'], variables['imageName'], variables['build.buildId']) ]
   steps:
   - script: printenv
