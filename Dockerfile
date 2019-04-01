@@ -1,3 +1,3 @@
 # A very simple Dockerfile...
-FROM alpine
+FROM debian
 LABEL maintainer="Kristoffer Bakkejord"
