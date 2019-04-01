@@ -28,6 +28,8 @@ jobs:
   - build
   pool:
     vmImage: ubuntu-16.04
-  container: build_image
+  container:
+    image: $(imageName):$(build.buildId)
+    endpoint: docker-hub-registry
   steps:
   - script: printenv
