@@ -1,0 +1,31 @@
+variables:
+  - group: dockerCredentials
+    # contains: dockerUsername, dockerPassword, dockerRegistry
+  - name: imageName
+    value: azure-pipelines-test
+
+resources:
+  containers:
+  - container: build_image
+    image: '$(imageName):$(build.buildId)'
+    endpoint: docker-hub-registry
+
+jobs:
+- job: build
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  steps:
+  - script: |
+      docker login -u $(dockerUsername) -p $(dockerPassword)
+      docker build -t '$(dockerRegistry)/$(imageName):$(build.buildId)' .
+      docker push -t '$(dockerRegistry)/$(imageName):$(build.buildId)'
+    displayName: 'docker build'
+
+- job: test
+  dependsOn:
+  - build
+  pool:
+    vmImage: ubuntu-16.04
+  container: build_image
+  steps:
+  - script: printenv
