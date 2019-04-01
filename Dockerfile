@@ -1,0 +1,3 @@
+# A very simple Dockerfile...
+FROM alpine
+LABEL maintainer="Kristoffer Bakkejord"
