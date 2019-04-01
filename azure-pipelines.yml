@@ -1,8 +1,10 @@
 variables:
   - group: dockerCredentials
-    # contains: dockerUsername, dockerPassword, dockerRegistry
+    # contains: dockerUsername, dockerPassword
   - name: imageName
     value: azure-pipelines-test
+  - name: dockerRegistry
+    value: krsb
 
 resources:
   containers:
