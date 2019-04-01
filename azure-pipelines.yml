@@ -5,8 +5,8 @@ variables:
     value: azure-pipelines-test
   - name: dockerRegistry
     value: krsb
-  - name: fullImageName
-    value:
+  - name: System.Debug
+    value: "true"
 
 jobs:
 - job: build
