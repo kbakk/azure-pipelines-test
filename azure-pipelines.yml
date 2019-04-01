@@ -5,12 +5,8 @@ variables:
     value: azure-pipelines-test
   - name: dockerRegistry
     value: krsb
-
-resources:
-  containers:
-  - container: build_image
-    image: '$(imageName):$(build.buildId)'
-    endpoint: docker-hub-registry
+  - name: fullImageName
+    value:
 
 jobs:
 - job: build
@@ -29,7 +25,7 @@ jobs:
   pool:
     vmImage: ubuntu-16.04
   container:
-    image: $[ format('{0}:{1}', variables['imageName'], variables['build.buildId']) ]
-    endpoint: docker-hub-registry
+    image: '$(dockerRegistry)/$(imageName):$(build.buildId)'
+    # endpoint: docker-hub-registry
   steps:
   - script: printenv
